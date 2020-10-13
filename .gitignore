@@ -1,4 +1,6 @@
 *
 !.gitignore
+!LICENSE
 !postdl.py
+!README.md
 !ymdl.sh
