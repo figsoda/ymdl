@@ -16,5 +16,7 @@ try:
 except StopIteration:
     artist = na(m[3]) or na(m[4]) or na(m[5]) or m[6]
 
-subprocess.run(["AtomicParsley", name, "-W", "--artist", artist], check = True)
+cmd = ["AtomicParsley", name, "-W", "--artist", artist]
+if 'Atom "©alb" contains: ' not in tags: cmd += ["--album", track]
+subprocess.run(cmd, check = True)
 os.rename(name, f"{track} - {artist}.m4a")
