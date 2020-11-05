@@ -13,5 +13,5 @@ youtube-dl
 ## Usage
 
 ```shell
-sh ymdl.sh "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+sh ymdl.sh [ARGS]..
 ```
