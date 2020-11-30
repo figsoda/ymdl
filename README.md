@@ -12,6 +12,4 @@ youtube-dl
 
 ## Usage
 
-```shell
-sh ymdl.sh [ARGS]..
-```
+Run `ymdl.sh`, all arguments are passed to `youtube-dl`
