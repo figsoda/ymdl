@@ -12,4 +12,4 @@ youtube-dl
 
 ## Usage
 
-Run `ymdl.sh`, all arguments are passed to `youtube-dl`
+Run `ymdl`, all arguments are passed to `youtube-dl`
