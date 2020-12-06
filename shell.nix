@@ -1,3 +1,3 @@
-{ pkgs ? import <nixpkgs> { } }:
+with import <nixpkgs> { };
 
-pkgs.mkShell { nativeBuildInputs = with pkgs; [ atomicparsley youtube-dl ]; }
+mkShell { buildInputs = [ atomicparsley youtube-dl ]; }
