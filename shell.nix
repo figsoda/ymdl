@@ -1,3 +1,3 @@
 with import <nixpkgs> { };
 
-mkShell { buildInputs = [ atomicparsley youtube-dl ]; }
+mkShell { buildInputs = [ atomicparsley python3 youtube-dl ]; }
