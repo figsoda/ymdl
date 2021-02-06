@@ -5,7 +5,7 @@ Tiny script to download music from youtube with youtube-dl
 
 ## Requirements
 
-atomicparsley
+python 3 with pytaglib
 
 youtube-dl
 
