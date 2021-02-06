@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 
-import os, re, subprocess, sys
+import os, re, sys, taglib
 
 def na(s): return None if s == "NA" else s
 
 name = sys.argv[1]
 
-m = re.fullmatch(r"(.+)@(.+)@(.+)@(.+)@(.+)@(.+)\.m4a", name)
-tags = subprocess.run(["AtomicParsley", name, "-t"], check = True, stdout = subprocess.PIPE, text = True).stdout
+song = taglib.File(name)
+m = re.fullmatch(r"(.+)@(.+)@(.+)@(.+)@(.+)@(.+)\.flac", name)
 
-track = na(m[1]) or m[2]
+if not song.tags.get("ALBUM"): song.tags["ALBUM"] = [na(m[1]) or m[2]]
 
-try:
-    artist = next(re.finditer(r"Associated  Performer: (.*)", tags))[1]
-except StopIteration:
-    artist = na(m[3]) or na(m[4]) or na(m[5]) or m[6]
+if not song.tags.get("ARTIST"):
+    try:
+        artist = next(
+            re.finditer(r"Associated  Performer: (.*)", song.tags["DESCRIPTION"][0])
+        )[1]
+    except (IndexError, KeyError, StopIteration):
+        artist = na(m[3]) or na(m[4]) or na(m[5]) or m[6]
+    song.tags["ARTIST"] = artist
 
-cmd = ["AtomicParsley", name, "-W", "--artist", artist]
-if 'Atom "©alb" contains: ' not in tags: cmd += ["--album", track]
-subprocess.run(cmd, check = True)
-os.rename(name, f"{track} - {artist}.m4a")
+song.save()
+os.rename(name, f"{song.tags['ALBUM'][0]} - {song.tags['ARTIST'][0]}.flac")
