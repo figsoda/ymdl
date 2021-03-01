@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os, re, sys, taglib
 
 def na(s): return None if s == "NA" else s
