@@ -7,7 +7,9 @@ name = sys.argv[1]
 song = taglib.File(name)
 m = re.fullmatch(r"(.+)@(.+)@(.+)@(.+)@(.+)@(.+)\.flac", name)
 
-if not song.tags.get("ALBUM"): song.tags["ALBUM"] = [na(m[1]) or m[2]]
+track = song.tags.get("TITLE") or na(m[1]) or m[2]
+
+if not song.tags.get("ALBUM"): song.tags["ALBUM"] = [track]
 
 if not song.tags.get("ARTIST"):
     try:
@@ -19,4 +21,4 @@ if not song.tags.get("ARTIST"):
     song.tags["ARTIST"] = artist
 
 song.save()
-os.rename(name, f"{song.tags['ALBUM'][0]} - {song.tags['ARTIST'][0]}.flac")
+os.rename(name, f"{track} - {song.tags['ARTIST'][0]}.flac")
