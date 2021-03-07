@@ -7,7 +7,10 @@ name = sys.argv[1]
 song = taglib.File(name)
 m = re.fullmatch(r"(.+)@(.+)@(.+)@(.+)@(.+)@(.+)\.flac", name)
 
-track = song.tags.get("TITLE") or na(m[1]) or m[2]
+if title := song.tags.get("TITLE"):
+    track = title[0]
+else:
+    track = na(m[1]) or m[2]
 
 if not song.tags.get("ALBUM"): song.tags["ALBUM"] = [track]
 
