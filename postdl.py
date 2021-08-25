@@ -1,6 +1,13 @@
-import os, re, sys, taglib
+import os
+import re
+import sys
 
-def na(s): return None if s == "NA" else s
+import taglib
+
+
+def na(s):
+    return None if s == "NA" else s
+
 
 name = sys.argv[1]
 
@@ -12,7 +19,8 @@ if title := song.tags.get("TITLE"):
 else:
     track = na(m[1]) or m[2]
 
-if not song.tags.get("ALBUM"): song.tags["ALBUM"] = [track]
+if not song.tags.get("ALBUM"):
+    song.tags["ALBUM"] = [track]
 
 if not song.tags.get("ARTIST"):
     try:
