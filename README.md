@@ -7,9 +7,9 @@ Tiny script to download music from youtube with youtube-dl
 
 python 3 with pytaglib
 
-youtube-dl
+yt-dlp
 
 
 ## Usage
 
-Run `ymdl`, all arguments are passed to `youtube-dl`
+Run `ymdl`, all arguments are passed to `yt-dlp`
