@@ -1,6 +1,6 @@
 # ymdl
 
-Tiny script to download music from youtube with youtube-dl
+Tiny script to download music from youtube with yt-dlp
 
 
 ## Requirements
